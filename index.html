@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Luqman · GIS & Location Intelligence Specialist</title>
+  <meta name="description" content="GIS freelancer based in Malaysia. Maps, spatial dashboards, and data pipelines — built for businesses that need answers, not just maps.">
+  <meta name="author" content="Luqman">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Luqman · GIS Freelancer">
+  <meta property="og:description" content="GIS analysis, spatial dashboards, and data pipelines for Malaysian businesses.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Data files (order matters) -->
+  <script src="data/profile.js"></script>
+  <script src="data/services.js"></script>
+  <script src="data/projects.js"></script>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav aria-label="Main navigation">
+    <div class="wrapper">
+      <a href="#" class="nav-logo" aria-label="Home"></a>
+      <a href="#" class="nav-cta" aria-label="Hire me via WhatsApp">💬 Hire Me</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero" aria-labelledby="hero-heading">
+    <div class="wrapper">
+      <div class="hero-inner">
+
+        <!-- Text -->
+        <div class="hero-content">
+          <div class="hero-tag" role="status"></div>
+          <h1 class="hero-headline" id="hero-heading"></h1>
+          <p class="hero-sub"></p>
+          <div class="hero-btns">
+            <a href="#" class="btn-primary btn-hire">💬 Hire Me</a>
+            <a href="#projects" class="btn-secondary">View My Work ↓</a>
+          </div>
+        </div>
+
+        <!-- Map visual -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="map-sim">
+            <div class="map-grid"></div>
+            <div class="map-ring r1"></div>
+            <div class="map-ring r2"></div>
+            <div class="map-ring r3"></div>
+            <div class="map-dot d1"></div>
+            <div class="map-dot d2"></div>
+            <div class="map-dot d3"></div>
+            <div class="map-dot d4"></div>
+            <div class="map-dot d5"></div>
+            <div class="map-label"></div>
+            <div class="map-stat"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services" aria-labelledby="services-heading">
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="section-label">What I Do</p>
+        <h2 class="section-title" id="services-heading">Services built<br>for real outcomes</h2>
+        <p class="section-sub">No fluff. Each deliverable answers a specific business or planning question.</p>
+      </div>
+      <!-- Injected by script.js -->
+      <div class="services-grid" role="list"></div>
+      <!-- Injected by script.js -->
+      <div class="stats-row" aria-label="Key stats"></div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="section-label">Featured Projects</p>
+        <h2 class="section-title" id="projects-heading">Work that<br>delivers results</h2>
+        <p class="section-sub">Real tools built for real-world use — not just academic exercises.</p>
+      </div>
+      <!-- Injected by script.js -->
+      <div class="projects-grid" role="list"></div>
+    </div>
+  </section>
+
+  <!-- ═══ TOOLS ═══ -->
+  <section id="tools" aria-labelledby="tools-heading">
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="section-label">Stack</p>
+        <h2 class="section-title" id="tools-heading">Tools I work with</h2>
+        <p class="section-sub">Industry-standard tools — the same ones used by professional GIS firms.</p>
+      </div>
+      <!-- Injected by script.js -->
+      <div class="tools-row" aria-label="Tech stack"></div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section id="cta" aria-labelledby="cta-heading">
+    <div class="wrapper">
+      <div class="cta-inner reveal">
+        <p class="section-label">Ready to Start?</p>
+        <h2 class="cta-headline" id="cta-heading">
+          Send your data.<br>I'll turn it into clear insights.
+        </h2>
+        <p class="cta-sub">
+          Whether it's a map, a dashboard, or a full spatial analysis — tell me what you need and I'll give you a clear scope and price within 24 hours.
+        </p>
+        <a href="#" class="btn-primary btn-start">⚡ Start a Project</a>
+        <!-- Injected by script.js -->
+        <div class="cta-links" aria-label="Contact links"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <p class="footer-copy"></p>
+    <p class="footer-tagline"></p>
+  </footer>
+
+  <!-- Renderer (loads last so DOM is ready) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
