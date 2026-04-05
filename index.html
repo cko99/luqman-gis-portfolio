@@ -11,7 +11,6 @@
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>emailjs.init("QUnm2lXMMA0mLxE2j");</script>
 
     <style>
         :root {
@@ -691,13 +690,10 @@
     <script>
         // ─── CONFIGURATION ───────────────────────────────────────────────────────
         const profile = {
-            companyName: "GEOLOGIC",
-            email: "luqmanbinlatif@gmail.com" // ← Replace with your actual email
+            companyName: "GEOLOGIC"
         };
 
         // ─── SERVICES DATA ────────────────────────────────────────────────────────
-        // FIX: Removed emailSubject/emailBody per card — service buttons now scroll
-        //       to the form and auto-fill project type instead of opening email.
         const services = [
             {
                 icon: "🗺️",
@@ -730,7 +726,6 @@
         ];
 
         // ─── PROJECTS DATA ────────────────────────────────────────────────────────
-        // FIX: Removed Hybrid Drone project. Updated descriptions to be concise + English.
         const projects = [
             {
                 tag: "Network Analysis",
@@ -749,12 +744,10 @@
             }
         ];
 
-        // ─── FIX: Scroll to CTA and auto-fill project type ───────────────────────
-        // Called by service card buttons instead of directly opening email.
+        // ─── HELPER: Scroll to CTA and auto-fill project type ────────────────────
         function openServiceForm(serviceName) {
             const select = document.getElementById("projectType");
             if (select) {
-                // Match option value to the service name
                 for (let option of select.options) {
                     if (option.value === serviceName) {
                         select.value = serviceName;
@@ -765,7 +758,7 @@
             document.getElementById("cta").scrollIntoView({ behavior: "smooth" });
         }
 
-        // ─── FIX: Scroll to CTA form (hero "Start a Project" button) ─────────────
+        // ─── HELPER: Scroll to CTA form ──────────────────────────────────────────
         function scrollToCTA() {
             document.getElementById("cta").scrollIntoView({ behavior: "smooth" });
         }
@@ -775,7 +768,6 @@
         if (servicesContainer) {
             servicesContainer.innerHTML = '';
             services.forEach(s => {
-                // FIX: Button uses openServiceForm() — no direct email link
                 const card = `
                     <article class="service-card">
                         <span class="service-icon">${s.icon}</span>
@@ -810,33 +802,50 @@
             });
         }
 
-        // ─── Form Submit → EmailJS (no email client opened) ──────────────────────
-        document.getElementById("quoteForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+        // ─── EMAILJS INIT + FORM SUBMIT (wrapped in DOMContentLoaded) ────────────
+        document.addEventListener("DOMContentLoaded", function() {
 
-            const name  = document.getElementById("clientName").value.trim();
-            const email = document.getElementById("clientEmail").value.trim();
-            const type  = document.getElementById("projectType").value;
-            const desc  = document.getElementById("projectDesc").value.trim();
+            // Init EmailJS v4 (IIFE format — correct for SDK v4)
+            (function() {
+                emailjs.init({
+                    publicKey: "QUnm2lXMMA0mLxE2j"
+                });
+            })();
 
-            if (!name || !email || !type || !desc) {
-                alert("Please fill in all fields.");
-                return;
+            const contactForm = document.getElementById("quoteForm");
+
+            if (contactForm) {
+                contactForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    console.log("Submit triggered!");
+
+                    const formData = {
+                        client_name:  document.getElementById("clientName").value.trim(),
+                        client_email: document.getElementById("clientEmail").value.trim(),
+                        project_type: document.getElementById("projectType").value,
+                        project_desc: document.getElementById("projectDesc").value.trim()
+                    };
+
+                    console.log("Data captured:", formData);
+
+                    if (!formData.client_name || !formData.client_email || !formData.project_type || !formData.project_desc) {
+                        alert("Please fill in all fields.");
+                        return;
+                    }
+
+                    emailjs.send("service_semh805", "template_dj8u9c9", formData)
+                    .then(function(response) {
+                        console.log("SUCCESS!", response.status, response.text);
+                        alert("Request sent successfully.");
+                        contactForm.reset();
+                    }, function(error) {
+                        console.log("FAILED...", error);
+                        alert("Failed to send. Check console (F12) for details.");
+                    });
+                });
+            } else {
+                console.error("Form with ID 'quoteForm' not found!");
             }
-
-            emailjs.send("service_semh805", "template_dj8u9c9", {
-                client_name:  name,
-                client_email: email,
-                project_type: type,
-                project_desc: desc
-            })
-            .then(function() {
-                alert("Request sent successfully.");
-                document.getElementById("quoteForm").reset();
-            }, function(error) {
-                alert("Failed to send.");
-                console.error(error);
-            });
         });
     </script>
 </body>
