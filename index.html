@@ -1,150 +1,843 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIS & Spatial Data Consultant | GEOLOGIC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- SEO -->
-  <title>Luqman · GIS & Location Intelligence Specialist</title>
-  <meta name="description" content="GIS freelancer based in Malaysia. Maps, spatial dashboards, and data pipelines — built for businesses that need answers, not just maps.">
-  <meta name="author" content="Luqman">
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Luqman · GIS Freelancer">
-  <meta property="og:description" content="GIS analysis, spatial dashboards, and data pipelines for Malaysian businesses.">
-  <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bg: #030303;
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --accent: #00ffa3;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --text-dark: #000;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-  <!-- Data files (order matters) -->
-  <script src="data/profile.js"></script>
-  <script src="data/services.js"></script>
-  <script src="data/projects.js"></script>
+        /* --- Background Effects --- */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -20%, #00ffa315 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        #hero {
+            padding-top: 200px;
+            padding-bottom: 80px;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(0, 255, 163, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 163, 0.2);
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 163, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* --- Service Cards Section --- */
+        #what-i-do { padding: 80px 0; }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title-large {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 50px;
+            font-size: 1rem;
+        }
+
+        .service-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: border-color 0.3s, transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            border-color: rgba(0, 255, 163, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .service-desc {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .service-meta {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-meta strong { color: var(--accent); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 100px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 163, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* --- Bento Grid Section --- */
+        #bento-grid { padding-bottom: 80px; }
+
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+        }
+
+        .bento-item {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .bento-item:hover { border-color: rgba(0, 255, 163, 0.15); }
+
+        .bento-large { grid-column: span 2; grid-row: span 2; }
+        .bento-medium { grid-column: span 2; }
+        .bento-small { grid-column: span 1; }
+
+        .bento-item h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .bento-item p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* --- Pipeline / Workflow UI --- */
+        .pipeline-bento {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pipeline-flow {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pipeline-step-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            font-weight: 600;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .pipeline-step-bar {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pipeline-step-bar .tag {
+            background: rgba(0, 255, 163, 0.08);
+            border: 1px solid rgba(0, 255, 163, 0.15);
+            color: var(--accent);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .pipeline-arrow {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75rem;
+            padding-left: 86px;
+            margin: -4px 0;
+        }
+
+        /* Modern Stack */
+        .tech-stack-bento { padding: 24px; }
+
+        .tech-logos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .tech-logos span {
+            font-size: 26px;
+            opacity: 0.7;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-logos span:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Stats */
+        .stat-bento { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* --- Projects Section --- */
+        #projects { padding: 80px 0; }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-3px); }
+
+        .project-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .project-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* --- CTA / Form Section --- */
+        #cta { padding: 100px 0; }
+
+        .cta-box {
+            background: linear-gradient(135deg, #00ffa310 0%, #00ffa305 100%);
+            border: 1px solid rgba(0, 255, 163, 0.3);
+            border-radius: 40px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .cta-headline {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        /* --- Form Styles --- */
+        .cta-form {
+            max-width: 520px;
+            margin: 32px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-field label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            border-color: rgba(0, 255, 163, 0.4);
+        }
+
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a1a1a1' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        select.form-input option {
+            background: #111;
+            color: #fff;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit-row {
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .trust-badge {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .section-title-large { font-size: 2.2rem; }
+            .service-card { padding: 20px; }
+            .bento-container { grid-template-columns: repeat(2, 1fr); }
+            .bento-large, .bento-medium { grid-column: span 2; }
+            #hero { padding-top: 160px; }
+            .cta-box { padding: 40px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a:not(:last-child) { display: none; }
+            .bento-container { grid-template-columns: 1fr; }
+            .bento-large, .bento-small { grid-column: span 1; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ═══ NAV ═══ -->
-  <nav aria-label="Main navigation">
-    <div class="wrapper">
-      <a href="#" class="nav-logo" aria-label="Home"></a>
-      <a href="#" class="nav-cta" aria-label="Hire me via WhatsApp">💬 Hire Me</a>
-    </div>
-  </nav>
+    <div class="aurora"></div>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="hero" aria-labelledby="hero-heading">
-    <div class="wrapper">
-      <div class="hero-inner">
-
-        <!-- Text -->
-        <div class="hero-content">
-          <div class="hero-tag" role="status"></div>
-          <h1 class="hero-headline" id="hero-heading"></h1>
-          <p class="hero-sub"></p>
-          <div class="hero-btns">
-            <a href="#" class="btn-primary btn-hire">💬 Hire Me</a>
-            <a href="#projects" class="btn-secondary">View My Work ↓</a>
-          </div>
+    <nav>
+        <div class="logo">GEO<span>LOGIC</span></div>
+        <div class="nav-links">
+            <a href="#what-i-do">Services</a>
+            <a href="#projects">Work</a>
+            <a href="#bento-grid">Stack</a>
+            <a href="#cta" class="btn-primary" style="padding: 10px 20px; margin-left: 10px;">Request Proposal</a>
         </div>
+    </nav>
 
-        <!-- Map visual -->
-        <div class="hero-visual" aria-hidden="true">
-          <div class="map-sim">
-            <div class="map-grid"></div>
-            <div class="map-ring r1"></div>
-            <div class="map-ring r2"></div>
-            <div class="map-ring r3"></div>
-            <div class="map-dot d1"></div>
-            <div class="map-dot d2"></div>
-            <div class="map-dot d3"></div>
-            <div class="map-dot d4"></div>
-            <div class="map-dot d5"></div>
-            <div class="map-label"></div>
-            <div class="map-stat"></div>
-          </div>
-        </div>
+    <main class="wrapper">
 
-      </div>
-    </div>
-  </section>
+        <!-- HERO -->
+        <section id="hero">
+            <span class="badge">GIS & Spatial Data Consultant</span>
+            <h1>Turning Data Into <span>Actionable Insights.</span></h1>
+            <p class="hero-sub">
+                I build GIS analysis, dashboards, and spatial visualizations to support clearer decision-making.
+            </p>
+            <!-- FIX: Scrolls to CTA form instead of opening email directly -->
+            <button class="btn-primary" onclick="scrollToCTA()">⚡ Start a Project</button>
+        </section>
 
-  <!-- ═══ SERVICES ═══ -->
-  <section id="services" aria-labelledby="services-heading">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="section-label">What I Do</p>
-        <h2 class="section-title" id="services-heading">Services built<br>for real outcomes</h2>
-        <p class="section-sub">No fluff. Each deliverable answers a specific business or planning question.</p>
-      </div>
-      <!-- Injected by script.js -->
-      <div class="services-grid" role="list"></div>
-      <!-- Injected by script.js -->
-      <div class="stats-row" aria-label="Key stats"></div>
-    </div>
-  </section>
+        <!-- SERVICES -->
+        <section id="what-i-do">
+            <span class="section-label">WHAT I DO</span>
+            <h2 class="section-title-large">Services built for real outcomes</h2>
+            <p class="section-sub">No fluff. Each deliverable answers a specific business or planning question.</p>
+            <div class="service-cards-grid" id="services-container"></div>
+        </section>
 
-  <!-- ═══ PROJECTS ═══ -->
-  <section id="projects" aria-labelledby="projects-heading">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="section-label">Featured Projects</p>
-        <h2 class="section-title" id="projects-heading">Work that<br>delivers results</h2>
-        <p class="section-sub">Real tools built for real-world use — not just academic exercises.</p>
-      </div>
-      <!-- Injected by script.js -->
-      <div class="projects-grid" role="list"></div>
-    </div>
-  </section>
+        <!-- BENTO GRID / STACK -->
+        <section class="bento-container" id="bento-grid">
 
-  <!-- ═══ TOOLS ═══ -->
-  <section id="tools" aria-labelledby="tools-heading">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="section-label">Stack</p>
-        <h2 class="section-title" id="tools-heading">Tools I work with</h2>
-        <p class="section-sub">Industry-standard tools — the same ones used by professional GIS firms.</p>
-      </div>
-      <!-- Injected by script.js -->
-      <div class="tools-row" aria-label="Tech stack"></div>
-    </div>
-  </section>
+            <!-- FIX: Spatial Automation — replaced empty placeholder with real workflow UI -->
+            <div class="bento-item bento-large pipeline-bento">
+                <h3>Spatial Workflow System</h3>
+                <p>Structured GIS workflow combining Python, SQL, and mapping tools to automate analysis and reduce manual work.</p>
 
-  <!-- ═══ CTA ═══ -->
-  <section id="cta" aria-labelledby="cta-heading">
-    <div class="wrapper">
-      <div class="cta-inner reveal">
-        <p class="section-label">Ready to Start?</p>
-        <h2 class="cta-headline" id="cta-heading">
-          Send your data.<br>I'll turn it into clear insights.
-        </h2>
-        <p class="cta-sub">
-          Whether it's a map, a dashboard, or a full spatial analysis — tell me what you need and I'll give you a clear scope and price within 24 hours.
-        </p>
-        <a href="#" class="btn-primary btn-start">⚡ Start a Project</a>
-        <!-- Injected by script.js -->
-        <div class="cta-links" aria-label="mailto:luqmanbinlatif@gmail.com"></div>
-      </div>
-    </div>
-  </section>
+                <div class="pipeline-flow">
+                    <div class="pipeline-step">
+                        <span class="pipeline-step-label">Input</span>
+                        <div class="pipeline-step-bar">
+                            <span class="tag">CSV</span>
+                            <span class="tag">Spatial Data</span>
+                        </div>
+                    </div>
+                    <div class="pipeline-arrow">↓</div>
+                    <div class="pipeline-step">
+                        <span class="pipeline-step-label">Processing</span>
+                        <div class="pipeline-step-bar">
+                            <span class="tag">Python</span>
+                            <span class="tag">QGIS</span>
+                        </div>
+                    </div>
+                    <div class="pipeline-arrow">↓</div>
+                    <div class="pipeline-step">
+                        <span class="pipeline-step-label">Storage</span>
+                        <div class="pipeline-step-bar">
+                            <span class="tag">SQLite</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="pipeline-arrow">↓</div>
+                    <div class="pipeline-step">
+                        <span class="pipeline-step-label">Output</span>
+                        <div class="pipeline-step-bar">
+                            <span class="tag">Map</span>
+                            <span class="tag">Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer>
-    <p class="footer-copy"></p>
-    <p class="footer-tagline"></p>
-  </footer>
+            <div class="bento-item bento-small stat-bento">
+                <span class="stat-number">20+</span>
+                <p>Projects Delivered</p>
+            </div>
 
-  <!-- Renderer (loads last so DOM is ready) -->
-  <script src="script.js"></script>
+            <div class="bento-item bento-small tech-stack-bento">
+                <h3>Core Stack</h3>
+                <p>Industry-standard tools for professional firms.</p>
+                <div class="tech-logos">
+                    <span title="Python">🐍</span>
+                    <span title="QGIS">🗺️</span>
+                    <span title="GIS">🌍</span>
+                    <span title="Data">📊</span>
+                    <span title="SQL">💾</span>
+                    <span title="Remote Sensing">🛰️</span>
+                </div>
+            </div>
+        </section>
 
+        <!-- PROJECTS -->
+        <section id="projects">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="project-list" id="projects-container"></div>
+        </section>
+
+        <!-- CTA / CONTACT FORM -->
+        <section class="cta-box" id="cta">
+            <h2 class="cta-headline">Ready to Start?</h2>
+            <p style="color: var(--text-dim);">Share your data challenge. I'll turn it into clear spatial insights.</p>
+
+            <!-- FIX: Form now has Name, Email, Project Type (dropdown), Description -->
+            <form class="cta-form" id="quoteForm" novalidate>
+
+                <div class="form-field">
+                    <label for="clientName">Your Name / Company</label>
+                    <input type="text" id="clientName" class="form-input" placeholder="e.g. Acme Corp" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="clientEmail">Your Email</label>
+                    <input type="email" id="clientEmail" class="form-input" placeholder="you@company.com" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="projectType">Project Type</label>
+                    <!-- FIX: Dropdown that can be auto-filled by openServiceForm() -->
+                    <select id="projectType" class="form-input" required>
+                        <option value="" disabled selected>Select a service...</option>
+                        <option value="GIS Mapping & Analysis">GIS Mapping &amp; Analysis</option>
+                        <option value="Location Intelligence Dashboard">Location Intelligence Dashboard</option>
+                        <option value="Hotspot & Risk Zone Detection">Hotspot &amp; Risk Zone Detection</option>
+                        <option value="Remote Sensing & Land Analysis">Remote Sensing &amp; Land Analysis</option>
+                        <option value="Other / Not Sure">Other / Not Sure</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="projectDesc">Project Description</label>
+                    <textarea id="projectDesc" class="form-input" rows="4" placeholder="Describe your requirements, data sources, and expected output..." required></textarea>
+                </div>
+
+                <div class="form-submit-row">
+                    <button type="submit" class="btn-primary">✉️ Send Request</button>
+                </div>
+            </form>
+
+            <span class="trust-badge">Response within 24 hours · Structured proposal included</span>
+        </section>
+
+    </main>
+
+    <footer style="text-align:center; padding: 40px 24px; color: var(--text-dim); font-size: 0.85rem; border-top: 1px solid var(--border);">
+        &copy; 2026 GEOLOGIC. Precision GIS &amp; Spatial Solutions.
+    </footer>
+
+    <script>
+        // ─── CONFIGURATION ───────────────────────────────────────────────────────
+        const profile = {
+            companyName: "GEOLOGIC",
+            email: "contact@geologic.com" // ← Replace with your actual email
+        };
+
+        // ─── SERVICES DATA ────────────────────────────────────────────────────────
+        // FIX: Removed emailSubject/emailBody per card — service buttons now scroll
+        //       to the form and auto-fill project type instead of opening email.
+        const services = [
+            {
+                icon: "🗺️",
+                title: "GIS Mapping & Analysis",
+                desc: "Know exactly where problems are — before they get worse.",
+                price: "From RM 250",
+                delivery: "3–5 days"
+            },
+            {
+                icon: "📊",
+                title: "Location Intelligence Dashboard",
+                desc: "One screen. All your spatial data. Always up to date.",
+                price: "From RM 500",
+                delivery: "5–7 days"
+            },
+            {
+                icon: "🔥",
+                title: "Hotspot & Risk Zone Detection",
+                desc: "Pinpoint high-risk areas so resources go where they matter.",
+                price: "From RM 350",
+                delivery: "3–5 days"
+            },
+            {
+                icon: "🛰️",
+                title: "Remote Sensing & Land Analysis",
+                desc: "Extract land use, vegetation, and change data from satellite imagery.",
+                price: "From RM 400",
+                delivery: "4–6 days"
+            }
+        ];
+
+        // ─── PROJECTS DATA ────────────────────────────────────────────────────────
+        // FIX: Removed Hybrid Drone project. Updated descriptions to be concise + English.
+        const projects = [
+            {
+                tag: "Network Analysis",
+                title: "Connectivity Dead Zone Mapping",
+                desc: "Identified low-connectivity areas using GIS interpolation to support infrastructure planning."
+            },
+            {
+                tag: "Spatial Analysis",
+                title: "Spatial Accessibility Analysis",
+                desc: "Evaluated service coverage using network routing and buffer zones to detect underserved areas."
+            },
+            {
+                tag: "Data Visualization",
+                title: "Mini Geospatial Dashboard",
+                desc: "Built a simple dashboard to visualize spatial data and extract basic insights for decision-making."
+            }
+        ];
+
+        // ─── FIX: Scroll to CTA and auto-fill project type ───────────────────────
+        // Called by service card buttons instead of directly opening email.
+        function openServiceForm(serviceName) {
+            const select = document.getElementById("projectType");
+            if (select) {
+                // Match option value to the service name
+                for (let option of select.options) {
+                    if (option.value === serviceName) {
+                        select.value = serviceName;
+                        break;
+                    }
+                }
+            }
+            document.getElementById("cta").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // ─── FIX: Scroll to CTA form (hero "Start a Project" button) ─────────────
+        function scrollToCTA() {
+            document.getElementById("cta").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // ─── RENDER: Service Cards ────────────────────────────────────────────────
+        const servicesContainer = document.getElementById('services-container');
+        if (servicesContainer) {
+            servicesContainer.innerHTML = '';
+            services.forEach(s => {
+                // FIX: Button uses openServiceForm() — no direct email link
+                const card = `
+                    <article class="service-card">
+                        <span class="service-icon">${s.icon}</span>
+                        <h3 class="service-title">${s.title}</h3>
+                        <p class="service-desc">${s.desc}</p>
+                        <div class="service-meta">
+                            <div>${s.price}</div>
+                            <div>Delivery: <strong>${s.delivery}</strong></div>
+                        </div>
+                        <button class="btn-secondary" onclick="openServiceForm('${s.title}')">
+                            Get a Quote →
+                        </button>
+                    </article>
+                `;
+                servicesContainer.innerHTML += card;
+            });
+        }
+
+        // ─── RENDER: Project Cards ────────────────────────────────────────────────
+        const projectsContainer = document.getElementById('projects-container');
+        if (projectsContainer) {
+            projectsContainer.innerHTML = '';
+            projects.forEach(proj => {
+                const card = `
+                    <div class="project-card">
+                        <span class="project-tag">${proj.tag}</span>
+                        <h3>${proj.title}</h3>
+                        <p>${proj.desc}</p>
+                    </div>
+                `;
+                projectsContainer.innerHTML += card;
+            });
+        }
+
+        // ─── Form Submit → EmailJS (no email client opened) ──────────────────────
+        document.getElementById("quoteForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const name  = document.getElementById("clientName").value.trim();
+            const email = document.getElementById("clientEmail").value.trim();
+            const type  = document.getElementById("projectType").value;
+            const desc  = document.getElementById("projectDesc").value.trim();
+
+            if (!name || !email || !type || !desc) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            emailjs.send("service_semh805", "template_xxxxx", {
+                client_name:  name,
+                client_email: email,
+                project_type: type,
+                project_desc: desc
+            })
+            .then(function() {
+                alert("Request sent successfully.");
+                document.getElementById("quoteForm").reset();
+            }, function(error) {
+                alert("Failed to send.");
+                console.error(error);
+            });
+        });
+    </script>
 </body>
 </html>
